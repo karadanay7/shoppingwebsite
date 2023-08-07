@@ -11,24 +11,29 @@ module.exports = {
     "./content/**/*.{md,yml,json,yaml,toml,csv}",
     "./app.vue",
   ],
-
   theme: {
-    extend: {},
-    keyframes: {
-      "slide-right": {
-        "0%": { transform: "translateX(-100%)" },
-        "100%": { transform: "translateX(0)" },
-      },
-    },
-    animation: {
-      "slide-right": "slide-right 0.5s",
+    screens: {
+      sm: "460px",
+      // => @media (min-width: 640px) { ... }
+
+      md: "768px",
+      // => @media (min-width: 768px) { ... }
+
+      lg: "1024px",
+      // => @media (min-width: 1024px) { ... }
+
+      xl: "1280px",
+      // => @media (min-width: 1280px) { ... }
+
+      "2xl": "1536px",
+      // => @media (min-width: 1536px) { ... }
     },
   },
+
   variants: {},
   plugins: [],
   corePlugins: {
     // ...
     animation: false, // Disable the core animation plugin to use custom animation
   },
-  plugins: [require("@tailwindcss/typography")],
 };

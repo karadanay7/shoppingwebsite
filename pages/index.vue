@@ -1,94 +1,151 @@
 <template>
   <MainLayout>
-    <Vue3Marquee id="marquee-slider" :speed="15000">
-      <h1 class="font-bold pr-28">SALE !</h1>
-      <h1 class="font-bold pr-28">15% OFF !</h1>
-      <h1 class="font-bold pr-28">SALE !</h1>
-      <h1 class="font-bold pr-28">15% OFF !</h1>
-      <h1 class="font-bold pr-28">SALE !</h1>
-      <h1 class="font-bold pr-28">15% OFF !</h1>
-      <h1 class="font-bold pr-28">SALE !</h1>
-      <h1 class="font-bold pr-28">15% OFF !</h1>
-    </Vue3Marquee>
-    <div id="IndexPage" class="mt-4 max-w-[1200px] mx-auto px-2">
-      <div
-        class="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4"
+    <div class="px-4 py-8 bg-rose-100 text-center">
+      <h1 class="text-4xl font-bold mb-4 text-gray-700">
+        Welcome to Our Store!
+      </h1>
+
+      <h2 class="text-2xl font-bold mb-4 text-center text-gray-600">
+        Check Out Sale Products
+      </h2>
+
+      <Vue3Marquee id="marquee-slider" :speed="12000">
+        <div
+          v-for="product in saleProducts"
+          :key="product.id"
+          class="border-2 rounded-xl border-solid border-pink-200 overflow-hidden ml-40"
+        >
+          <nuxt-link
+            :to="`/shop/${product.id}`"
+            class="h-full space-around gap-5 bg-white flex flex-col sm:p-2 xl:p-5"
+          >
+            <div class="shadow-sm rounded-md">
+              <img
+                :src="product.image"
+                :alt="product.title"
+                class="max-w-full object-contain rounded-md h-20 mx-auto"
+              />
+            </div>
+            <div
+              class="min-h-0 flex justify-between flex-col text-gray-900 h-20 w-44"
+            >
+              <span
+                class="text-[9px] sm:text-[12px] lg:text-md font-semibold p-2 text-center text-gray-600"
+              >
+                {{ product.title }}
+              </span>
+              <span
+                class="text-[9px] sm:text-[14px] text-center font-semibold text-gray-900"
+              >
+                {{ `$${product.price.toFixed(2)}` }}
+              </span>
+            </div>
+          </nuxt-link>
+        </div>
+      </Vue3Marquee>
+    </div>
+
+    <div class="px-4 py-8 bg-pink-100">
+      <h2 class="text-2xl font-bold mb-4 text-center text-gray-600">
+        Trending Products
+      </h2>
+
+      <Vue3Marquee
+        id="marquee-slider-reverse"
+        :speed="12000"
+        :direction="'reverse'"
       >
         <div
-          v-for="product in products"
+          v-for="product in trendingProducts"
           :key="product.id"
-          class="flex justify-center"
+          class="border-2 rounded-xl border-solid border-pink-200 overflow-hidden ml-40"
         >
-          <!-- Product Card -->
-          <div
-            class="border rounded-md p-4 shadow-md flex flex-col items-center h-full"
+          <nuxt-link
+            :to="`/shop/${product.id}`"
+            class="h-full space-around gap-5 bg-white flex flex-col sm:p-2 xl:p-5"
           >
-            <img
-              :src="product.image"
-              :alt="product.title"
-              :class="{
-                'w-full flex-grow object-cover rounded-md mb-4':
-                  screenWidth >= 652,
-                'w-full h-48 object-cover rounded-md mb-4': screenWidth < 652,
-              }"
-            />
-            <h3 class="text-lg font-semibold text-center">
-              {{ product.title }}
-            </h3>
-            <p class="text-gray-600 mt-2">
-              {{ `$${product.price.toFixed(2)}` }}
-            </p>
-            <!-- Add more product information here if available -->
-          </div>
+            <div class="shadow-sm rounded-md">
+              <img
+                :src="product.image"
+                :alt="product.title"
+                class="max-w-full object-contain rounded-md h-20 mx-auto"
+              />
+            </div>
+            <div
+              class="min-h-0 flex justify-between flex-col text-gray-900 h-20 w-44"
+            >
+              <span
+                class="text-[9px] sm:text-[12px] lg:text-md font-semibold p-2 text-center text-gray-600"
+              >
+                {{ product.title }}
+              </span>
+              <span
+                class="text-[9px] sm:text-[14px] text-center font-semibold text-gray-900"
+              >
+                {{ `$${product.price.toFixed(2)}` }}
+              </span>
+            </div>
+          </nuxt-link>
         </div>
-      </div>
+      </Vue3Marquee>
+    </div>
+
+    <div class="px-4 py-8 bg-violet-100">
+      <h2 class="text-2xl font-bold mb-4 text-center text-gray-600">
+        Most Selling Products
+      </h2>
+      <Vue3Marquee id="marquee-slider" :speed="12000">
+        <div
+          v-for="product in mostSellingProducts"
+          :key="product.id"
+          class="border-2 rounded-xl border-solid border-pink-200 overflow-hidden ml-40"
+        >
+          <nuxt-link
+            :to="`/shop/${product.id}`"
+            class="h-full space-around gap-5 bg-white flex flex-col sm:p-2 xl:p-5"
+          >
+            <div class="shadow-sm rounded-md">
+              <img
+                :src="product.image"
+                :alt="product.title"
+                class="max-w-full object-contain rounded-md h-20 mx-auto"
+              />
+            </div>
+            <div
+              class="min-h-0 flex justify-between flex-col text-gray-900 h-20 w-44"
+            >
+              <span
+                class="text-[9px] sm:text-[12px] lg:text-md font-semibold p-2 text-center text-gray-600"
+              >
+                {{ product.title }}
+              </span>
+              <span
+                class="text-[9px] sm:text-[14px] text-center font-semibold text-gray-900"
+              >
+                {{ `$${product.price.toFixed(2)}` }}
+              </span>
+            </div>
+          </nuxt-link>
+        </div>
+      </Vue3Marquee>
     </div>
   </MainLayout>
 </template>
 
 <script setup>
-const response = await useFetch("/api/get-all-products");
-
-const products = response.data?.value;
+import MainLayout from "~/layouts/MainLayout.vue";
+const saleProducts = ref([]);
+const trendingProducts = ref([]);
+const mostSellingProducts = ref([]);
+const productsResponse = await useFetch("/api/prisma/get-all-products");
+const products = productsResponse?.data?.value;
+saleProducts.value = products.filter((product) =>
+  [27, 28, 29].includes(product.id)
+);
+trendingProducts.value = products.filter((product) =>
+  [30, 32, 33].includes(product.id)
+);
+mostSellingProducts.value = products.filter((product) =>
+  [34, 35, 27].includes(product.id)
+);
 </script>
-<style scoped>
-@keyframes scroll {
-  0% {
-    transform: translate(0px);
-  }
-  100% {
-    transform: translate(-1760px);
-  }
-}
-.grid-animation {
-  animation: scroll 10s linear infinite;
-}
-@media (max-width: 652px) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-.horizontal-grid {
-  overflow-x: hidden;
-  overflow-y: auto;
-  height: 500px;
-}
-.horizontal-grid-1,
-.horizontal-grid-2 {
-  display: flex;
-}
-
-.horizontal-grid-1 {
-  margin-left: 160px;
-}
-.elements {
-  border: 1px solid #e2e2e2;
-  border-radius: 16px;
-  padding: 16px;
-  margin: 32px 0 0 32px;
-  flex: 0 0 320px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-</style>

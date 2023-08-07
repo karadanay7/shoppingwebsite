@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Addresses {
+  id         Int       @id @default(autoincrement())
+  userId     String    @db.Uuid // Reference to the Supabase user ID
+  name       String
+  address    String
+  zipcode    String
+  city       String
+  country    String
+  created_at DateTime? @default(now()) @db.Timestamptz(6)
+}
+
+model Orders {
+  id         Int         @id @default(autoincrement())
+  userId     String      @db.Uuid // Reference to the Supabase user ID
+  stripeId   String
+  name       String
+  address    String
+  zipcode    String
+  city       String
+  country    String
+  created_at DateTime?   @default(now()) @db.Timestamptz(6)
+  orderItem  OrderItem[]
+}
+
+model OrderItem {
+  id         Int       @id @default(autoincrement())
+  orderId    Int
+  productId  Int
+  created_at DateTime? @default(now()) @db.Timestamptz(6)
+  order      Orders     @relation(fields: [orderId], references: [id])
+  product    Products   @relation(fields: [productId], references: [id])
+}
+
+model Products {
+  id            Int      @id @default(autoincrement())
+  title         String
+  description   String // Reference to the Supabase user ID
+  categoryId    Int      // Reference to the Category model
+  price         Int
+  image         String
+  stockQuantity Int
+  created_at    DateTime? @default(now()) @db.Timestamptz(6)
+  orderItem     OrderItem[]
+  category      Categories  @relation(fields: [categoryId], references: [id])
+}
+
+model Categories {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  products  Products[] // The opposite relation field in the Product model
+}
