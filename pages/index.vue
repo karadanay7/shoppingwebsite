@@ -1,13 +1,14 @@
 <template>
   <MainLayout>
-    <div class="bg-orange-400 text-center">
-      <h1 class="text-4xl font-bold text-gray-50 pt-28">
+    <div class="bg-orange-400 text-center pt-32">
+      <h1 class="text-4xl font-bold text-gray-50 mb-4">
         Welcome to Our Store!
       </h1>
       <div>
-        <h2 class="text-2xl font-bold mb-4 text-center text-gray-600">
+        <h2 class="text-xl font-semibold text-center text-gray-700">
           Check Out Sale Products
         </h2>
+        <hr class="mb-6 border-gray-600" />
 
         <Vue3Marquee id="marquee-slider" :speed="12000" :pause-on-hover="true">
           <div
@@ -53,9 +54,10 @@
       </div>
 
       <div class="px-4 py-8">
-        <h2 class="text-2xl font-bold mb-4 text-center text-gray-600">
+        <h2 class="text-xl font-semibold text-center text-gray-700">
           Trending Products
         </h2>
+        <hr class="mb-6 border-gray-600" />
 
         <Vue3Marquee
           id="marquee-slider"
@@ -106,9 +108,10 @@
       </div>
 
       <div class="px-4 py-8">
-        <h2 class="text-2xl font-bold mb-4 text-center text-gray-600">
+        <h2 class="text-xl font-semibold text-center text-gray-700">
           Most Selling Products
         </h2>
+        <hr class="mb-6 border-gray-600" />
         <Vue3Marquee id="marquee-slider" :speed="12000" :pause-on-hover="true">
           <div
             v-for="product in mostSellingProducts"
@@ -151,6 +154,7 @@
           </div>
         </Vue3Marquee>
       </div>
+      <hr class="mt-2 border-orange-500" />
     </div>
   </MainLayout>
 </template>
