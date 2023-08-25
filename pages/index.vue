@@ -1,133 +1,156 @@
 <template>
   <MainLayout>
-    <div class="px-4 py-8 bg-rose-100 text-center">
-      <h1 class="text-4xl font-bold mb-4 text-gray-700">
+    <div class="bg-orange-400 text-center">
+      <h1 class="text-4xl font-bold text-gray-50 pt-28">
         Welcome to Our Store!
       </h1>
+      <div>
+        <h2 class="text-2xl font-bold mb-4 text-center text-gray-600">
+          Check Out Sale Products
+        </h2>
 
-      <h2 class="text-2xl font-bold mb-4 text-center text-gray-600">
-        Check Out Sale Products
-      </h2>
-
-      <Vue3Marquee id="marquee-slider" :speed="12000">
-        <div
-          v-for="product in saleProducts"
-          :key="product.id"
-          class="border-2 rounded-xl border-solid border-pink-200 overflow-hidden ml-40"
-        >
-          <nuxt-link
-            :to="`/shop/${product.id}`"
-            class="h-full space-around gap-5 bg-white flex flex-col sm:p-2 xl:p-5"
+        <Vue3Marquee id="marquee-slider" :speed="12000" :pause-on-hover="true">
+          <div
+            v-for="product in saleProducts"
+            :key="product.id"
+            class="border-2 rounded-xl border-solid border-pink-200 overflow-hidden ml-40"
           >
-            <div class="shadow-sm rounded-md">
-              <img
-                :src="product.image"
-                :alt="product.title"
-                class="max-w-full object-contain rounded-md h-20 mx-auto"
-              />
-            </div>
-            <div
-              class="min-h-0 flex justify-between flex-col text-gray-900 h-20 w-44"
+            <nuxt-link
+              :to="`/shop/${product.id}`"
+              class="h-full space-around gap-5 bg-white flex flex-col sm:p-2 xl:p-5"
             >
-              <span
-                class="text-[9px] sm:text-[12px] lg:text-md font-semibold p-2 text-center text-gray-600"
+              <div
+                class="border rounded-md p-4 shadow-md flex flex-col items-center w-[150px] sm:w-[220px] md:w-[250px] lg:w-[260px] xl:w-[270px]"
               >
-                {{ product.title }}
-              </span>
-              <span
-                class="text-[9px] sm:text-[14px] text-center font-semibold text-gray-900"
-              >
-                {{ `$${product.price.toFixed(2)}` }}
-              </span>
-            </div>
-          </nuxt-link>
-        </div>
-      </Vue3Marquee>
-    </div>
+                <div
+                  class="h-[110px] sm:h-[250px] md:h-[250px] lg:h-[250px] xl:h-[300px] w-[120px] sm:w-[200px] md:w-[250px] lg:w-[250px] xl:w-[250px] flex items-center justify-center"
+                >
+                  <img
+                    :src="product.image"
+                    :alt="product.title"
+                    class="max-w-full max-h-full object-contain rounded-md"
+                  />
+                </div>
 
-    <div class="px-4 py-8 bg-pink-100">
-      <h2 class="text-2xl font-bold mb-4 text-center text-gray-600">
-        Trending Products
-      </h2>
+                <div
+                  class="min-h-0 flex justify-between flex-col text-gray-900 h-20 w-44"
+                >
+                  <span
+                    class="text-[9px] sm:text-[12px] lg:text-md font-semibold p-2 text-center text-gray-600"
+                  >
+                    {{ product.title }}
+                  </span>
+                  <span
+                    class="text-[9px] sm:text-[14px] text-center font-semibold text-gray-900"
+                  >
+                    {{ `$${product.price.toFixed(2)}` }}
+                  </span>
+                </div>
+              </div>
+            </nuxt-link>
+          </div>
+        </Vue3Marquee>
+      </div>
 
-      <Vue3Marquee
-        id="marquee-slider-reverse"
-        :speed="12000"
-        :direction="'reverse'"
-      >
-        <div
-          v-for="product in trendingProducts"
-          :key="product.id"
-          class="border-2 rounded-xl border-solid border-pink-200 overflow-hidden ml-40"
+      <div class="px-4 py-8">
+        <h2 class="text-2xl font-bold mb-4 text-center text-gray-600">
+          Trending Products
+        </h2>
+
+        <Vue3Marquee
+          id="marquee-slider"
+          :speed="12000"
+          :direction="'reverse'"
+          :pause-on-hover="true"
         >
-          <nuxt-link
-            :to="`/shop/${product.id}`"
-            class="h-full space-around gap-5 bg-white flex flex-col sm:p-2 xl:p-5"
+          <div
+            v-for="product in trendingProducts"
+            :key="product.id"
+            class="border-2 rounded-xl border-solid border-pink-200 overflow-hidden ml-40"
           >
-            <div class="shadow-sm rounded-md">
-              <img
-                :src="product.image"
-                :alt="product.title"
-                class="max-w-full object-contain rounded-md h-20 mx-auto"
-              />
-            </div>
-            <div
-              class="min-h-0 flex justify-between flex-col text-gray-900 h-20 w-44"
+            <nuxt-link
+              :to="`/shop/${product.id}`"
+              class="h-full space-around gap-5 bg-white flex flex-col sm:p-2 xl:p-5"
             >
-              <span
-                class="text-[9px] sm:text-[12px] lg:text-md font-semibold p-2 text-center text-gray-600"
+              <div
+                class="border rounded-md p-4 shadow-md flex flex-col items-center w-[150px] sm:w-[220px] md:w-[250px] lg:w-[260px] xl:w-[270px]"
               >
-                {{ product.title }}
-              </span>
-              <span
-                class="text-[9px] sm:text-[14px] text-center font-semibold text-gray-900"
-              >
-                {{ `$${product.price.toFixed(2)}` }}
-              </span>
-            </div>
-          </nuxt-link>
-        </div>
-      </Vue3Marquee>
-    </div>
+                <div
+                  class="h-[110px] sm:h-[250px] md:h-[250px] lg:h-[250px] xl:h-[300px] w-[120px] sm:w-[200px] md:w-[250px] lg:w-[250px] xl:w-[250px] flex items-center justify-center"
+                >
+                  <img
+                    :src="product.image"
+                    :alt="product.title"
+                    class="max-w-full max-h-full object-contain rounded-md"
+                  />
+                </div>
 
-    <div class="px-4 py-8 bg-violet-100">
-      <h2 class="text-2xl font-bold mb-4 text-center text-gray-600">
-        Most Selling Products
-      </h2>
-      <Vue3Marquee id="marquee-slider" :speed="12000">
-        <div
-          v-for="product in mostSellingProducts"
-          :key="product.id"
-          class="border-2 rounded-xl border-solid border-pink-200 overflow-hidden ml-40"
-        >
-          <nuxt-link
-            :to="`/shop/${product.id}`"
-            class="h-full space-around gap-5 bg-white flex flex-col sm:p-2 xl:p-5"
+                <div
+                  class="min-h-0 flex justify-between flex-col text-gray-900 h-20 w-44"
+                >
+                  <span
+                    class="text-[9px] sm:text-[12px] lg:text-md font-semibold p-2 text-center text-gray-600"
+                  >
+                    {{ product.title }}
+                  </span>
+                  <span
+                    class="text-[9px] sm:text-[14px] text-center font-semibold text-gray-900"
+                  >
+                    {{ `$${product.price.toFixed(2)}` }}
+                  </span>
+                </div>
+              </div>
+            </nuxt-link>
+          </div>
+        </Vue3Marquee>
+      </div>
+
+      <div class="px-4 py-8">
+        <h2 class="text-2xl font-bold mb-4 text-center text-gray-600">
+          Most Selling Products
+        </h2>
+        <Vue3Marquee id="marquee-slider" :speed="12000" :pause-on-hover="true">
+          <div
+            v-for="product in mostSellingProducts"
+            :key="product.id"
+            class="border-2 rounded-xl border-solid border-pink-200 overflow-hidden ml-40"
           >
-            <div class="shadow-sm rounded-md">
-              <img
-                :src="product.image"
-                :alt="product.title"
-                class="max-w-full object-contain rounded-md h-20 mx-auto"
-              />
-            </div>
-            <div
-              class="min-h-0 flex justify-between flex-col text-gray-900 h-20 w-44"
+            <nuxt-link
+              :to="`/shop/${product.id}`"
+              class="h-full space-around gap-5 bg-white flex flex-col sm:p-2 xl:p-5"
             >
-              <span
-                class="text-[9px] sm:text-[12px] lg:text-md font-semibold p-2 text-center text-gray-600"
+              <div
+                class="border rounded-md p-4 shadow-md flex flex-col items-center w-[150px] sm:w-[220px] md:w-[250px] lg:w-[260px] xl:w-[270px]"
               >
-                {{ product.title }}
-              </span>
-              <span
-                class="text-[9px] sm:text-[14px] text-center font-semibold text-gray-900"
-              >
-                {{ `$${product.price.toFixed(2)}` }}
-              </span>
-            </div>
-          </nuxt-link>
-        </div>
-      </Vue3Marquee>
+                <div
+                  class="h-[110px] sm:h-[250px] md:h-[250px] lg:h-[250px] xl:h-[300px] w-[120px] sm:w-[200px] md:w-[250px] lg:w-[250px] xl:w-[250px] flex items-center justify-center"
+                >
+                  <img
+                    :src="product.image"
+                    :alt="product.title"
+                    class="max-w-full max-h-full object-contain rounded-md"
+                  />
+                </div>
+
+                <div
+                  class="min-h-0 flex justify-between flex-col text-gray-900 h-20 w-44"
+                >
+                  <span
+                    class="text-[9px] sm:text-[12px] lg:text-md font-semibold p-2 text-center text-gray-600"
+                  >
+                    {{ product.title }}
+                  </span>
+                  <span
+                    class="text-[9px] sm:text-[14px] text-center font-semibold text-gray-900"
+                  >
+                    {{ `$${product.price.toFixed(2)}` }}
+                  </span>
+                </div>
+              </div>
+            </nuxt-link>
+          </div>
+        </Vue3Marquee>
+      </div>
     </div>
   </MainLayout>
 </template>

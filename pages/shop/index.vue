@@ -1,7 +1,7 @@
 <template>
   <MainLayout>
     <ClientOnly>
-      <Vue3Marquee class="z-[50] top-8 sm:top-10 md:top-6">
+      <Vue3Marquee class="top-32">
         <h1 class="font-bold pr-28">SALE !</h1>
         <h1 class="font-bold pr-28">15% OFF !</h1>
         <h1 class="font-bold pr-28">SALE !</h1>
@@ -13,7 +13,7 @@
       </Vue3Marquee>
     </ClientOnly>
 
-    <div id="IndexPage" class="mt-14 md:mt-6 max-w-[1200px] mx-auto px-2">
+    <div id="IndexPage" class="pt-36 md:mt-6 max-w-[1200px] mx-auto px-2">
       <div
         class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4"
       >
@@ -38,7 +38,9 @@
                   sizes="sm:100vw md:50vw lg:400px"
                 />
               </div>
-              <div class="mt-4 h-[100px] flex flex-col justify-center">
+              <div
+                class="mt-4 h-[100px] text-center flex flex-col justify-center"
+              >
                 <h3 class="text-xs sm:text-lg md:text-lg font-semibold">
                   {{ product.title }}
                 </h3>

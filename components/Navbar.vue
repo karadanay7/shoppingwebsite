@@ -196,10 +196,6 @@
       </div>
     </div>
   </div>
-
-  <slot />
-
-  <Footer />
 </template>
 
 <script setup>
