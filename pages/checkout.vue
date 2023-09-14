@@ -123,6 +123,7 @@
 </template>
 
 <script setup>
+import { loadStripe } from "@stripe/stripe-js";
 import MainLayout from "~/layouts/MainLayout.vue";
 import { useUserStore } from "~/stores/user";
 const userStore = useUserStore();
@@ -150,7 +151,6 @@ onBeforeMount(async () => {
     currentAddress.value = await useFetch(
       `/api/prisma/get-address-by-user/${user.value.id}`
     );
-    setTimeout(() => (userStore.isLoading = false), 200);
   }
 });
 
@@ -180,9 +180,9 @@ watch(
 const stripeInit = async () => {
   const runtimeConfig = useRuntimeConfig();
 
-  stripe = Stripe(String(runtimeConfig.public.stripePk));
-
-  let res = await useFetchfetch("/api/stripe/paymentintent", {
+  stripe = await loadStripe(String(runtimeConfig.public.stripePk));
+  console.log("Stripe Object:", stripe.value);
+  let res = await useFetch("/api/stripe/paymentintent", {
     method: "POST",
     body: {
       amount: total.value,
@@ -190,7 +190,8 @@ const stripeInit = async () => {
   });
   clientSecret = res.client_secret;
 
-  elements = stripe.elements();
+  elements = stripe?.elements();
+  console.log(elements, "emenets");
   var style = {
     base: {
       fontSize: "18px",

@@ -65,7 +65,7 @@ const removeFromCart = () => {
 watch(
   () => isSelected.value,
   (val) => {
-    emit("selectedRadio", { id: product.id, val: val });
+    emit("selectedRadio", { id: product.value.id, val: product.value });
   }
 );
 </script>

@@ -47,13 +47,13 @@
           </div>
 
           <div id="Items" class="rounded-lg sm:p-4 mt-4">
-            <ul v-for="product in userStore.cart">
+            <div v-for="product in userStore.cart">
               <CartItem
                 :product="product"
                 :selectedArray="selectedArray"
                 @selectedRadio="selectedRadioFunc"
               />
-            </ul>
+            </div>
           </div>
         </div>
 
@@ -72,7 +72,7 @@
             </div>
             <button
               type="submit"
-              @click="goToCheckout()"
+              @click="goToCheckout"
               class="flex items-center justify-center bg-orange-500 w-full text-white text-[21px] font-semibold p-1.5 rounded-full mt-4"
               id="checkout"
               aria-label="checkout"
@@ -104,10 +104,6 @@ const router = useRouter();
 
 let selectedArray = ref([]);
 
-onMounted(() => {
-  setTimeout(() => (userStore.isLoading = false), 200);
-});
-
 const cards = ref(["visa.png", "mastercard.png", "paypal.png", "applepay.png"]);
 
 const totalPriceComputed = computed(() => {
@@ -134,6 +130,7 @@ const selectedRadioFunc = (e) => {
 };
 
 const goToCheckout = () => {
+  console.log("click works");
   let ids = [];
   userStore.checkout = [];
 
@@ -145,6 +142,7 @@ const goToCheckout = () => {
 
   res.forEach((item) => userStore.checkout.push(toRaw(item)));
 
-  router.push("/checkout");
+  router.push({ name: "checkout" });
 };
+console.log("hey", userStore.checkout);
 </script>

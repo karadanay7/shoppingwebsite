@@ -2,7 +2,7 @@
   <div class="flex justify-start my-2">
     <nuxt-img
       class="rounded-md md:w-[150px] w-[90px]"
-      :src="product.url"
+      :src="product.image"
       alt="product"
       title="product"
     />
