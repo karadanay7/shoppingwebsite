@@ -14,23 +14,24 @@
   "devDependencies": {
     "@nuxt/devtools": "^0.8.0",
     "@nuxt/image": "1.0.0-rc.1",
-    "@types/node": "^18.16.19",
-    "nuxt": "^3.6.5",
-    "nuxt-icon": "^0.4.2",
-    "prisma": "^5.0.0"
+    "@nuxtjs/supabase": "^1.1.0",
+    "@types/node": "^20.5.9",
+    "nuxt": "^3.7.3",
+    "nuxt-icon": "^0.5.0",
+    "prisma": "^5.2.0"
   },
   "dependencies": {
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/html-validator": "^1.5.2",
-    "@nuxtjs/supabase": "^0.3.8",
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "@pinia/nuxt": "^0.4.11",
-    "@prisma/client": "^5.0.0",
-    "@supabase/supabase-js": "^2.31.0",
-    "base64-arraybuffer": "^1.0.2",
+    "@prisma/client": "^5.2.0",
+    "@stripe/stripe-js": "^2.1.2",
     "nuxt-lazy-load": "^3.0.4",
     "nuxt-lodash": "^2.5.0",
+    "stripe": "^13.4.0",
     "vue3-marquee": "^4.0.0"
-  }
+  },
+  "version": "0.0.0"
 }
