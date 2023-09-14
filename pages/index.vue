@@ -1,20 +1,20 @@
 <template>
   <MainLayout>
-    <div class="bg-orange-400 text-center pt-32">
-      <h1 class="text-4xl font-bold text-gray-50 mb-4">
+    <div class="bg-gray-50 text-center pt-32">
+      <h1 class="text-4xl font-bold text-gray-600 mb-4">
         Welcome to Our Store!
       </h1>
       <div>
-        <h2 class="text-xl font-semibold text-center text-gray-700">
-          Check Out Sale Products
+        <h2 class="text-xl font-semibold text-center text-orange-400 mb-2">
+          Sale Products
         </h2>
-        <hr class="mb-6 border-gray-600" />
+        <hr class="mb-6 border-orange-400 border-2" />
 
         <Vue3Marquee id="marquee-slider" :speed="12000" :pause-on-hover="true">
           <div
             v-for="product in saleProducts"
             :key="product.id"
-            class="border-2 rounded-xl border-solid border-pink-200 overflow-hidden ml-40"
+            class="border-2 rounded-xl border-solid border-orange-400 overflow-hidden ml-40"
           >
             <nuxt-link
               :to="`/shop/${product.id}`"
@@ -54,10 +54,10 @@
       </div>
 
       <div class="px-4 py-8">
-        <h2 class="text-xl font-semibold text-center text-gray-700">
+        <h2 class="text-xl font-semibold text-center text-orange-400 mb-2">
           Trending Products
         </h2>
-        <hr class="mb-6 border-gray-600" />
+        <hr class="mb-6 border-orange-400 border-2" />
 
         <Vue3Marquee
           id="marquee-slider"
@@ -68,7 +68,7 @@
           <div
             v-for="product in trendingProducts"
             :key="product.id"
-            class="border-2 rounded-xl border-solid border-pink-200 overflow-hidden ml-40"
+            class="border-2 rounded-xl border-solid border-orange-400 overflow-hidden ml-40"
           >
             <nuxt-link
               :to="`/shop/${product.id}`"
@@ -108,15 +108,15 @@
       </div>
 
       <div class="px-4 py-8">
-        <h2 class="text-xl font-semibold text-center text-gray-700">
+        <h2 class="text-xl font-semibold text-center text-orange-400 mb-2">
           Most Selling Products
         </h2>
-        <hr class="mb-6 border-gray-600" />
+        <hr class="mb-6 border-orange-400 border-2" />
         <Vue3Marquee id="marquee-slider" :speed="12000" :pause-on-hover="true">
           <div
             v-for="product in mostSellingProducts"
             :key="product.id"
-            class="border-2 rounded-xl border-solid border-pink-200 overflow-hidden ml-40"
+            class="border-2 rounded-xl border-solid border-orange-400 overflow-hidden ml-40"
           >
             <nuxt-link
               :to="`/shop/${product.id}`"

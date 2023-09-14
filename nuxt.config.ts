@@ -13,6 +13,9 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "@nuxtjs/html-validator",
   ],
+  supabase: {
+    redirect: false,
+  },
   // routeRules: {
   //   // Homepage pre-rendered at build time
   //   "/": { prerender: true },

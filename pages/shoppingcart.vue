@@ -72,7 +72,7 @@
             </div>
             <button
               type="submit"
-              @click="goToCheckout"
+              @click="goToCheckout()"
               class="flex items-center justify-center bg-orange-500 w-full text-white text-[21px] font-semibold p-1.5 rounded-full mt-4"
               id="checkout"
               aria-label="checkout"
@@ -100,6 +100,7 @@ import MainLayout from "~/layouts/MainLayout.vue";
 import { useUserStore } from "~/stores/user";
 const userStore = useUserStore();
 const user = useSupabaseUser();
+const router = useRouter();
 
 let selectedArray = ref([]);
 
@@ -111,8 +112,8 @@ const cards = ref(["visa.png", "mastercard.png", "paypal.png", "applepay.png"]);
 
 const totalPriceComputed = computed(() => {
   let price = 0;
-  userStore.cart.forEach((product) => {
-    price += product.price;
+  userStore.cart.forEach((prod) => {
+    price += prod.price;
   });
   return price / 100;
 });
@@ -144,6 +145,6 @@ const goToCheckout = () => {
 
   res.forEach((item) => userStore.checkout.push(toRaw(item)));
 
-  return navigateTo("/checkout");
+  router.push("/checkout");
 };
 </script>

@@ -222,25 +222,25 @@ const signOut = () => {
   return navigateTo("/");
 };
 
-// const searchByName = useDebounce(async () => {
-//   isSearching.value = true;
-//   items.value = await useFetch(
-//     `/api/prisma/search-by-name/${searchItem.value}`
-//   );
-//   isSearching.value = false;
-// }, 100);
+const searchByName = useDebounce(async () => {
+  isSearching.value = true;
+  items.value = await useFetch(
+    `/api/prisma/search-by-name/${searchItem.value}`
+  );
+  isSearching.value = false;
+}, 100);
 
-// watch(
-//   () => searchItem.value,
-//   async () => {
-//     if (!searchItem.value) {
-//       setTimeout(() => {
-//         items.value = "";
-//         isSearching.value = false;
-//         return;
-//       }, 500);
-//     }
-//     searchByName();
-//   }
-// );
+watch(
+  () => searchItem.value,
+  async () => {
+    if (!searchItem.value) {
+      setTimeout(() => {
+        items.value = "";
+        isSearching.value = false;
+        return;
+      }, 500);
+    }
+    searchByName();
+  }
+);
 </script>

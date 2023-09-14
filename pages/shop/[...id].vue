@@ -1,6 +1,6 @@
 <template>
   <MainLayout>
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-gray-50">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-28">
         <div>
           <img

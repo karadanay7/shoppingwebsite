@@ -4,7 +4,7 @@
     class="flex justify-between group items-center my-2 bg-gray-50"
   >
     <div
-      class="h-[20px] shrink-0 w-[20px] rounded-full border mr-5 ml-5 group-hover:border-orange-500 border-gray-300"
+      class="h-[20px] shrink-0 w-[20px] rounded-full border mr-5 ml-5 group-hover:border-gray-400 border-gray-300"
       :class="isSelected ? 'bg-orange-500' : null"
     >
       <div class="h-[8px] w-[8px] rounded-full" />
