@@ -150,14 +150,14 @@
                 class="p-1"
               >
                 <NuxtLink
-                  :to="`/item/${item.id}`"
+                  :to="`/shop/${item.id}`"
                   class="flex items-center justify-center w-full cursor-pointer hover:bg-gray-100"
                 >
                   <div class="flex items-center">
                     <nuxt-img
                       class="rounded-md"
                       width="40"
-                      :src="item.url"
+                      :src="item.image"
                       alt="itemlogo"
                       title="item"
                     />

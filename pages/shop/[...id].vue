@@ -42,11 +42,11 @@ const productId = route.params.id;
 
 const response = await useFetch(`/api/prisma/get-product-by-id/${productId}`);
 const product = response?.data?.value;
-console.log(product);
+
 const addToCart = () => {
   userStore.cart.push(product);
 };
-console.log(userStore.cart);
+
 const isInCart = computed(() => {
   let res = false;
   userStore.cart.forEach((prod) => {

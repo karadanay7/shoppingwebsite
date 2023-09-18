@@ -1,7 +1,7 @@
 <template>
   <MainLayout>
     <main>
-      <div class="container mx-auto">
+      <div class="pt-32 mx-auto text-gray-700">
         <div class="flex justify-center">
           <div class="w-full sm:w-3/4 lg:w-1/2">
             <div class="bg-white shadow-md rounded p-6">
@@ -105,7 +105,7 @@
                 <hr />
                 <div class="mb-4">
                   <button
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    class="bg-gray-500 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded"
                   >
                     Add Product
                   </button>
