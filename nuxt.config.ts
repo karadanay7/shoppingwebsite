@@ -39,6 +39,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      script: [{ src: "https://js.stripe.com/v3/", defer: true }],
       htmlAttrs: {
         lang: "en",
       },
@@ -60,8 +61,6 @@ export default defineNuxtConfig({
             "Experienced Full-Stack Web Developer | Nuxt.js 3 | Vue.js | HTML5 | CSS | JavaScript | Tailwind | Bootstrap | EcmaScript | Pinia Discover the talent of Aysegul Karadan, a full-stack web developer specializing in Nuxt.js 3 and Vue.js. With a passion for clean and efficient code, I strive to deliver high-quality web solutions. Explore my portfolio and let's build something remarkable together",
         },
       ],
-      script: [{ src: "https://js.stripe.com/v3/", defer: true }],
     },
-    // baseURL: "/sadi/",
   },
 });

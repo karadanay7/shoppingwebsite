@@ -1,22 +1,25 @@
 <template>
   <MainLayout>
-    <div id="CheckoutPage" class="mt-4 max-w-[1200px] mx-auto px-2">
+    <div
+      id="CheckoutPage"
+      class="pt-28 w-full minh-h-screen mx-auto px-2 bg-gray-50 text-gray-800"
+    >
       <div class="md:flex gap-4 justify-between mx-auto w-full">
         <div class="md:w-[65%]">
-          <div class="bg-white rounded-lg p-4">
-            <div class="text-xl font-semibold mb-2">Shipping Address</div>
+          <div class="rounded-lg p-4">
+            <div class="text-xl font-semibold mb-2 ml-2">Shipping Address</div>
 
             <div v-if="currentAddress && currentAddress.data">
               <NuxtLink
                 to="/address"
-                class="flex items-center pb-2 text-blue-500 hover:text-red-400"
+                class="flex items-center pb-2 text-gray-500 hover:text-orange-500"
               >
                 <Icon name="mdi:plus" size="18" class="mr-2" />
                 Update Address
               </NuxtLink>
 
-              <div class="pt-2 border-t">
-                <div class="underline pb-1">Delivery Address</div>
+              <div class="p-2 border-t">
+                <div class="underline">Delivery Address</div>
                 <ul class="text-xs">
                   <li class="flex items-center gap-2">
                     <div>Contact name:</div>
@@ -51,23 +54,23 @@
             <NuxtLink
               v-else
               to="/address"
-              class="flex items-center text-blue-500 hover:text-red-400"
+              class="flex items-center text-gray-500 hover:text-orange-500"
             >
               <Icon name="mdi:plus" size="18" class="mr-2" />
               Add New Address
             </NuxtLink>
           </div>
 
-          <div id="Items" class="bg-white rounded-lg p-4 mt-4">
+          <div id="Items" class="rounded-lg p-4 mt-4">
             <div v-for="product in userStore.checkout">
-              <CheckoutItem :product="product" />
+              <CheckoutItem :product="product" class="pl-2" />
             </div>
           </div>
         </div>
 
-        <div class="md:hidden block my-4" />
+        <div class="md:hidden block my-4 pl-2" />
         <div class="md:w-[35%]">
-          <div id="PlaceOrder" class="bg-white rounded-lg p-4">
+          <div id="PlaceOrder" class="rounded-lg p-4">
             <div class="text-2xl font-extrabold mb-2">Summary</div>
 
             <div class="flex items-center justify-between my-4">
@@ -99,7 +102,7 @@
               <button
                 :disabled="isProcessing"
                 type="submit"
-                class="mt-4 bg-gradient-to-r from-[#FE630C] to-[#FF3200] w-full text-white text-[21px] font-semibold p-1.5 rounded-full"
+                class="mt-4 bg-orange-500 w-full text-white text-[21px] font-semibold p-1.5 rounded-full"
                 :class="isProcessing ? 'opacity-70' : 'opacity-100'"
                 id="processing"
                 aria-label="loading"
@@ -110,10 +113,10 @@
             </form>
           </div>
 
-          <div class="bg-white rounded-lg p-4 mt-4">
-            <div class="text-lg font-semibold mb-2 mt-2">AliExpress</div>
+          <div class="rounded-lg p-4 mt-4">
+            <div class="text-lg font-semibold mb-2 mt-2">Aysegul K</div>
             <p class="my-2">
-              AliExpress keeps your information and payment safe
+              Aysegul K keeps your information and payment safe
             </p>
           </div>
         </div>
@@ -123,7 +126,6 @@
 </template>
 
 <script setup>
-import { loadStripe } from "@stripe/stripe-js";
 import MainLayout from "~/layouts/MainLayout.vue";
 import { useUserStore } from "~/stores/user";
 const userStore = useUserStore();
@@ -180,18 +182,19 @@ watch(
 const stripeInit = async () => {
   const runtimeConfig = useRuntimeConfig();
 
-  stripe = await loadStripe(String(runtimeConfig.public.stripePk));
-  console.log("Stripe Object:", stripe.value);
+  stripe = Stripe(String(runtimeConfig.public.stripePk));
+
   let res = await useFetch("/api/stripe/paymentintent", {
     method: "POST",
     body: {
       amount: total.value,
     },
   });
-  clientSecret = res.client_secret;
+  console.log(res.data._rawValue.client_secret);
+  clientSecret = res.data._rawValue.client_secret;
 
   elements = stripe?.elements();
-  console.log(elements, "emenets");
+
   var style = {
     base: {
       fontSize: "18px",
