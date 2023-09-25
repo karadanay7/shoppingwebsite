@@ -73,34 +73,69 @@
               </div>
             </div>
             <div class="border-b" />
-            <ul class="bg-gray-50">
-              <li v-if="user">
-                <NuxtLink
-                  to="/orders"
-                  class="text-[13px] py-2 px-4 w-full hover:bg-gray-100 hover:text-orange-500 inline-block"
+            <div v-if="user?.role?.includes('authenticated')">
+              <ul class="bg-gray-50">
+                <li>
+                  <NuxtLink
+                    to="/orders"
+                    class="text-[13px] py-2 px-4 w-full hover:bg-gray-100 hover:text-orange-500 inline-block"
+                  >
+                    <Icon name="bx:bxs-shopping-bags" size="17" class="mb-1" />
+                    My Orders
+                  </NuxtLink>
+                </li>
+                <li>
+                  <NuxtLink
+                    to="/profile"
+                    class="text-[13px] py-2 px-4 w-full hover:bg-gray-100 hover:text-orange-500 inline-block"
+                  >
+                    <Icon name="ic:baseline-person" size="17" class="mb-1" />
+                    My Profile
+                  </NuxtLink>
+                </li>
+                <li
+                  @click="signOut()"
+                  class="text-[13px] py-2 px-4 w-full hover:bg-gray-100 hover:text-orange-500"
                 >
-                  <Icon name="bx:bxs-shopping-bags" size="17" class="mb-1" />
-                  My Orders
-                </NuxtLink>
-              </li>
-              <li v-if="user">
-                <NuxtLink
-                  to="/profile"
-                  class="text-[13px] py-2 px-4 w-full hover:bg-gray-100 hover:text-orange-500 inline-block"
+                  <Icon name="uil:signout" size="17" class="mb-1" />
+                  Sign out
+                </li>
+              </ul>
+            </div>
+            <div v-if="user?.role?.includes('admin')">
+              <ul class="bg-gray-50">
+                <li>
+                  <NuxtLink
+                    to="/admin/Addproduct"
+                    class="text-[13px] py-2 px-4 w-full hover:bg-gray-100 hover:text-orange-500 inline-block"
+                  >
+                    <Icon name="dashicons:products" size="17" class="mb-1" />
+                    Products
+                  </NuxtLink>
+                </li>
+                <li>
+                  <NuxtLink
+                    to="/admin/category"
+                    class="text-[13px] py-2 px-4 w-full hover:bg-gray-100 hover:text-orange-500 inline-block"
+                  >
+                    <Icon
+                      name="material-symbols:draft-orders"
+                      size="17"
+                      class="mb-1"
+                    />
+                    Orders
+                  </NuxtLink>
+                </li>
+                <li
+                  @click="signOut()"
+                  class="text-[13px] py-2 px-4 w-full hover:bg-gray-100 hover:text-orange-500"
                 >
-                  <Icon name="ic:baseline-person" size="17" class="mb-1" />
-                  My Profile
-                </NuxtLink>
-              </li>
-              <li
-                v-if="user"
-                @click="signOut()"
-                class="text-[13px] py-2 px-4 w-full hover:bg-gray-100 hover:text-orange-500"
-              >
-                <Icon name="uil:signout" size="17" class="mb-1" />
-                Sign out
-              </li>
-            </ul>
+                  <Icon name="uil:signout" size="17" class="mb-1" />
+                  Sign out
+                </li>
+              </ul>
+              {{ user }}
+            </div>
           </div>
         </li>
       </ul>

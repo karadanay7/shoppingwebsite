@@ -43,6 +43,7 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "en",
       },
+
       link: [
         {
           rel: "icon",
