@@ -20,6 +20,7 @@
             >Shop</nuxt-link
           >
         </li>
+
         <li>
           <nuxt-link
             to="/about"
@@ -115,7 +116,7 @@
                 </li>
                 <li>
                   <NuxtLink
-                    to="/admin/category"
+                    to="/admin/orders"
                     class="text-[13px] py-2 px-4 w-full hover:bg-gray-100 hover:text-orange-500 inline-block"
                   >
                     <Icon
@@ -134,7 +135,6 @@
                   Sign out
                 </li>
               </ul>
-              {{ user }}
             </div>
           </div>
         </li>

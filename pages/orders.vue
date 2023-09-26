@@ -8,37 +8,34 @@
         <Icon name="carbon:delivery" color="#f97316" size="35" />
         <span class="pl-4 pt-4">Orders</span>
       </div>
-      <div
-        v-if="orders && orders.data"
-        v-for="order in orders.data"
-        class="text-sm pl-4"
-      >
-        <div class="border-b py-1">
-          <div class="pt-2"></div>
+      <template v-if="orders && orders.data.length">
+        <div v-for="order in orders.data" :key="order.id" class="text-sm pl-4">
+          <div class="border-b py-1">
+            <div class="pt-2"></div>
 
-          <div v-for="item in order.orderItem">
-            <NuxtLink
-              class="flex items-center gap-3 p-1 hover:underline hover:text-orange-500"
-              :to="`/shop/${item.productId}`"
-            >
-              <nuxt-img
-                width="100"
-                :src="item.product.image"
-                alt="producturl"
-                title="item"
-              />
-              {{ item.product.title }}
-            </NuxtLink>
-          </div>
+            <div v-for="item in order.orderItem">
+              <NuxtLink
+                class="flex items-center gap-3 p-1 hover:underline hover:text-orange-500"
+                :to="`/shop/${item.productId}`"
+              >
+                <nuxt-img
+                  width="100"
+                  :src="item.product.image"
+                  alt="producturl"
+                  title="item"
+                />
+                {{ item.product.title }}
+              </NuxtLink>
+            </div>
 
-          <div class="pt-2 pb-5">
-            Delivery Address: {{ order.name }}, {{ order.address }},
-            {{ order.zipcode }}, {{ order.city }}, {{ order.country }}
+            <div class="pt-2 pb-5">
+              Delivery Address: {{ order.name }}, {{ order.address }},
+              {{ order.zipcode }}, {{ order.city }}, {{ order.country }}
+            </div>
+            <div class="pt-2 pb-5">Created time: {{ order.created_at }}</div>
           </div>
-          <div class="pt-2 pb-5">Created time: {{ order.created_at }}</div>
         </div>
-      </div>
-
+      </template>
       <div v-else class="flex items-center justify-center">
         You have no order history
       </div>
@@ -53,7 +50,7 @@ const userStore = useUserStore();
 const user = useSupabaseUser();
 
 let orders = ref(null);
-console.log(user.value.id);
+
 onBeforeMount(async () => {
   orders.value = await useFetch(
     `/api/prisma/get-all-orders-by-user/${user.value.id}`
