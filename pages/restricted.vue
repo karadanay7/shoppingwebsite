@@ -1,16 +1,14 @@
 <template>
-  <NavLayout>
+  <MainLayout>
     <div class="min-h-screen flex items-center justify-center bg-gray-50">
-      <div class="bg-white p-8 rounded-lg shadow-md">
+      <div class="bg-white p-8 rounded-lg shadow-md text-gray-700">
         <h1 class="text-2xl font-semibold mb-4">Access Restricted</h1>
-        <p class="text-gray-700 mb-4">
-          You do not have permission to access this page.
-        </p>
+        <p class="mb-4">You do not have permission to access this page.</p>
         <NuxtLink to="/">Go to Home</NuxtLink>
       </div>
-    </div></NavLayout
+    </div></MainLayout
   >
 </template>
 <script setup>
-import NavLayout from "~/layouts/NavLayout.vue";
+import MainLayout from "~/layouts/MainLayout.vue";
 </script>

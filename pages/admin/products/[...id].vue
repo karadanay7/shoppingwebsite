@@ -6,7 +6,7 @@
           <div class="w-full sm:w-3/4 lg:w-1/2">
             <div class="bg-white shadow-md rounded p-6">
               <h2 class="text-2xl font-semibold text-center mb-4">
-                Add a new Product
+                Update {{ product.title }}
               </h2>
               <form @submit.prevent="onAddProduct">
                 <!-- Category Dropdown -->
@@ -38,7 +38,7 @@
                     required
                     id="title"
                     class="w-full px-4 py-2 border rounded"
-                    placeholder="Enter product title"
+                    :placeholder="product.title"
                   />
                 </div>
 
@@ -51,7 +51,7 @@
                     required
                     id="price"
                     class="w-full px-4 py-2 border rounded"
-                    placeholder="Enter product price"
+                    :placeholder="product.price"
                   />
                 </div>
 
@@ -86,7 +86,9 @@
 
                 <!-- Photo File -->
                 <div class="mb-4">
-                  <label class="block mb-2 font-bold" id="image">Image:</label>
+                  <label class="block mb-2 font-bold" id="image">
+                    To Update Image:</label
+                  >
                   <input
                     type="file"
                     @change="uploadImage"
@@ -94,20 +96,22 @@
                     class="w-full"
                   />
                 </div>
+
                 <img
                   v-if="src"
                   :src="src"
-                  alt="Avatar"
-                  class="avatar image"
-                  style="width: 10em; height: 10em"
+                  alt="product image"
+                  class="max-w-[100px] max-h-[100px]"
                 />
+                <label class="font-bold">Current image</label>
+                <img :src="product.image" class="max-w-[200px] max-h-[200px]" />
                 <!-- Button -->
                 <hr />
                 <div class="mb-4">
                   <button
                     class="bg-gray-500 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded"
                   >
-                    Add Product
+                    Update Product
                   </button>
                 </div>
               </form>
@@ -118,20 +122,28 @@
     </main>
   </MainLayout>
 </template>
+
 <script setup>
-import useSupabase from "~/composables/useSupabase";
 import MainLayout from "~/layouts/MainLayout.vue";
+
+const route = useRoute();
+const productId = route.params.id;
+
+const response = await useFetch(`/api/prisma/get-product-by-id/${productId}`);
+const product = response?.data?.value;
+
+import useSupabase from "~/composables/useSupabase";
 const categoriesResponse = await useFetch("/api/prisma/get-all-categories");
 const categories = categoriesResponse.data.value;
 const { supabase } = useSupabase();
 
 const router = useRouter();
 
-const title = ref("");
-const price = ref(0);
-const stockQuantity = ref(1);
-const description = ref("");
-const categoryId = ref(null);
+const title = ref(product.title);
+const price = ref(product.price);
+const stockQuantity = ref(product.stockQuantity);
+const description = ref(product.description);
+const categoryId = ref(product.categoryId);
 const src = ref("");
 const files = ref(null);
 const latestPath = ref("");
@@ -150,8 +162,8 @@ const uploadImage = async (evt) => {
     let { error: uploadError, data: response } = await supabase.storage
       .from("butik1")
       .upload(filePath, file);
-    console.log("responsee", response);
-    latestPath.value = response?.path.toString();
+    latestPath.value = response.path.toString();
+
     if (uploadError) throw uploadError;
     const { data, error } = await supabase.storage
       .from("butik1")
@@ -177,5 +189,4 @@ const onAddProduct = async () => {
   });
   router.push("/admin/products");
 };
-// Fetch and display the image when the page loads or when the path changes
 </script>

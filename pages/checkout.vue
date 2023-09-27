@@ -190,7 +190,7 @@ const stripeInit = async () => {
       amount: total.value,
     },
   });
-  console.log(res.data._rawValue.client_secret);
+
   clientSecret = res.data._rawValue.client_secret;
 
   elements = stripe?.elements();

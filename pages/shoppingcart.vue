@@ -130,7 +130,6 @@ const selectedRadioFunc = (e) => {
 };
 
 const goToCheckout = () => {
-  console.log("click works");
   let ids = [];
   userStore.checkout = [];
 
