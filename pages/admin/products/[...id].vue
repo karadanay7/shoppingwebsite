@@ -8,7 +8,7 @@
               <h2 class="text-2xl font-semibold text-center mb-4">
                 Update {{ product.title }}
               </h2>
-              <form @submit.prevent="onAddProduct">
+              <form @submit.prevent="updateProduct(product.id)">
                 <!-- Category Dropdown -->
                 <div class="mb-4">
                   <label class="block mb-2 font-bold" id="category"
@@ -132,10 +132,9 @@ const productId = route.params.id;
 const response = await useFetch(`/api/prisma/get-product-by-id/${productId}`);
 const product = response?.data?.value;
 
-import useSupabase from "~/composables/useSupabase";
 const categoriesResponse = await useFetch("/api/prisma/get-all-categories");
 const categories = categoriesResponse.data.value;
-const { supabase } = useSupabase();
+const supabase = useSupabaseClient();
 
 const router = useRouter();
 
@@ -175,9 +174,9 @@ const uploadImage = async (evt) => {
   }
 };
 
-const onAddProduct = async () => {
-  await useFetch("/api/prisma/add-product/", {
-    method: "POST",
+const updateProduct = async (id) => {
+  await useFetch(`/api/prisma/put-product-by-id/${id}`, {
+    method: "PUT",
     body: {
       title: title.value,
       categoryId: categoryId.value,

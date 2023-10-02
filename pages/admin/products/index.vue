@@ -1,6 +1,15 @@
 <template>
   <MainLayout>
     <div class="min-h-screen bg-gray-50 pt-32">
+      <div class="p-4">
+        <nuxt-link
+          to="/admin/Addproduct"
+          class="bg-orange-500 text-white font-bold py-2 px-4 rounded-full"
+        >
+          Add New Product
+        </nuxt-link>
+      </div>
+
       <div class="flex flex-col overflow-x-auto">
         <div>
           <div class="inline-block min-w-full">
@@ -58,12 +67,18 @@
                       /></NuxtLink>
 
                       <button
+                        @click="deleteProduct(product.id)"
                         class="bg-orange-500 text-white font-bold py-2 px-4 rounded-full"
                       >
                         <Icon name="fluent:delete-12-regular" class="h-5 w-5" />
                       </button>
                     </td>
                   </tr>
+                  <Icon
+                    name="mdi:loading"
+                    class="!w-5 !h-5 !text-gray-800 animate-rotate"
+                    v-if="isLoading"
+                  />
                 </tbody>
               </table>
             </div>
@@ -76,28 +91,23 @@
 
 <script setup>
 import MainLayout from "~/layouts/MainLayout.vue";
-
 const productsResponse = await useFetch("/api/prisma/get-all-products");
-const products = productsResponse?.data?.value;
+const isLoading = ref(false);
+const products = ref(productsResponse?.data?.value);
 
-const deleteProduct = async (productId) => {
-  if (confirm("Are you sure you want to delete this product?")) {
-    const response = await useFetch(
-      `/api/prisma/delete-product-by-id/${productId}`,
-      {
-        method: "DELETE",
-      }
-    );
-
-    if (response?.statusCode === 200) {
-      // If the product was successfully deleted, remove it from the list
-      products.value = products.value.filter(
-        (product) => product.id !== productId
-      );
-    } else {
-      // Handle error, e.g., show an error message
-      alert("Failed to delete the product.");
-    }
+const deleteProduct = async (id) => {
+  try {
+    isLoading.value = true;
+    await useFetch(`/api/prisma/delete-product-by-id/${id}`, {
+      method: "DELETE",
+    });
+  } catch (error) {
+    console.log(error);
+  } finally {
+    const productsResponse = await useFetch("/api/prisma/get-all-products");
+    products.value = productsResponse?.data?.value;
+    isLoading.value = false;
+    alert("Product deleted successfully");
   }
 };
 
