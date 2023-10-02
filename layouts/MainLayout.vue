@@ -29,14 +29,7 @@
             >About</nuxt-link
           >
         </li>
-        <li>
-          <nuxt-link
-            to="/help"
-            class="block py-2 text-gray-600 pl-3 md:pl-12 hover:text-gray-900 hover:scale-110 rounded p-0"
-            aria-current="page"
-            >Help</nuxt-link
-          >
-        </li>
+
         <li>
           <nuxt-link
             to="/contact"
@@ -108,7 +101,7 @@
               <ul class="bg-gray-50">
                 <li>
                   <NuxtLink
-                    to="/admin/Addproduct"
+                    to="/admin/products"
                     class="text-[13px] py-2 px-4 w-full hover:bg-gray-100 hover:text-orange-500 inline-block"
                   >
                     <Icon name="dashicons:products" size="17" class="mb-1" />

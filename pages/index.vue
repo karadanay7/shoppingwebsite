@@ -1,6 +1,6 @@
 <template>
   <MainLayout>
-    <div class="bg-gray-50 text-center pt-32">
+    <div class="bg-gray-50 text-center pt-32 min-h-screen">
       <h1 class="text-4xl font-bold text-gray-600 mb-4">
         Welcome to Our Store!
       </h1>
@@ -14,7 +14,7 @@
           <div
             v-for="product in saleProducts"
             :key="product.id"
-            class="border-2 rounded-xl border-solid border-orange-400 overflow-hidden ml-40"
+            class="border-2 rounded-xl border-solid border-orange-400 overflow-hidden ml-48"
           >
             <nuxt-link
               :to="`/shop/${product.id}`"
@@ -68,7 +68,7 @@
           <div
             v-for="product in trendingProducts"
             :key="product.id"
-            class="border-2 rounded-xl border-solid border-orange-400 overflow-hidden ml-40"
+            class="border-2 rounded-xl border-solid border-orange-400 overflow-hidden ml-48"
           >
             <nuxt-link
               :to="`/shop/${product.id}`"
@@ -116,7 +116,7 @@
           <div
             v-for="product in mostSellingProducts"
             :key="product.id"
-            class="border-2 rounded-xl border-solid border-orange-400 overflow-hidden ml-40"
+            class="border-2 rounded-xl border-solid border-orange-400 overflow-hidden ml-48"
           >
             <nuxt-link
               :to="`/shop/${product.id}`"
@@ -167,12 +167,12 @@ const mostSellingProducts = ref([]);
 const productsResponse = await useFetch("/api/prisma/get-all-products");
 const products = productsResponse?.data?.value;
 saleProducts.value = products.filter((product) =>
-  [27, 28, 29].includes(product.id)
+  [51, 54, 52, 54, 55].includes(product.id)
 );
 trendingProducts.value = products.filter((product) =>
-  [30, 32, 33].includes(product.id)
+  [54, 55, 57, 58, 51].includes(product.id)
 );
 mostSellingProducts.value = products.filter((product) =>
-  [34, 35, 27].includes(product.id)
+  [58, 59, 60, 51, 54].includes(product.id)
 );
 </script>

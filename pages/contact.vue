@@ -1,5 +1,5 @@
 <template>
-  <NavLayout>
+  <MainLayout>
     <div class="bg-gray-50">
       <!-- Grayish section with "Get in Touch" -->
       <div class="max-w-screen-xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
@@ -88,8 +88,8 @@
         </form>
       </div>
     </div>
-  </NavLayout>
+  </MainLayout>
 </template>
 <script setup>
-import NavLayout from "~/layouts/NavLayout.vue";
+import MainLayout from "~/layouts/MainLayout.vue";
 </script>

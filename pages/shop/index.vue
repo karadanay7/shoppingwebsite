@@ -13,7 +13,10 @@
       </Vue3Marquee>
     </ClientOnly>
 
-    <div id="IndexPage" class="pt-36 md:mt-6 mx-auto px-2 bg-gray-50">
+    <div
+      id="IndexPage"
+      class="pt-36 md:mt-6 mx-auto px-2 bg-gray-50 min-h-screen"
+    >
       <div
         class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4"
       >
