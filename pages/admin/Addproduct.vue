@@ -119,11 +119,10 @@
   </MainLayout>
 </template>
 <script setup>
-import useSupabase from "~/composables/useSupabase";
 import MainLayout from "~/layouts/MainLayout.vue";
 const categoriesResponse = await useFetch("/api/prisma/get-all-categories");
 const categories = categoriesResponse.data.value;
-const { supabase } = useSupabase();
+const supabase = useSupabaseClient();
 
 const router = useRouter();
 
@@ -135,6 +134,27 @@ const categoryId = ref(null);
 const src = ref("");
 const files = ref(null);
 const latestPath = ref("");
+
+// const uploadImage = async (evt) => {
+//   files.value = evt.target.files;
+//   try {
+//     if (!files.value || files.value.length === 0) {
+//       throw new Error("You must select an image to upload.");
+//     }
+
+//     const file = files.value[0];
+//     const fileName = file.name;
+//     const filePath = `images/${fileName}`;
+
+//     let { error: uploadError } = await supabase.storage
+//       .from("butik1")
+//       .upload(filePath, file);
+
+//     if (uploadError) throw uploadError;
+//   } catch (error) {
+//     alert(error.message);
+//   }
+// };
 
 const uploadImage = async (evt) => {
   files.value = evt.target.files;
@@ -150,7 +170,7 @@ const uploadImage = async (evt) => {
     let { error: uploadError, data: response } = await supabase.storage
       .from("butik1")
       .upload(filePath, file);
-    console.log("responsee", response);
+
     latestPath.value = response?.path.toString();
     if (uploadError) throw uploadError;
     const { data, error } = await supabase.storage

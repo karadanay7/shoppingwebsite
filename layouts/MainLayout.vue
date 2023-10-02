@@ -12,6 +12,7 @@
             >Home</nuxt-link
           >
         </li>
+
         <li>
           <nuxt-link
             to="/shop"
@@ -74,7 +75,7 @@
               </div>
             </div>
             <div class="border-b" />
-            <div v-if="user?.role?.includes('authenticated')">
+            <div v-if="user && user.email !== 'karadan.ay7@gmail.com'">
               <ul class="bg-gray-50">
                 <li>
                   <NuxtLink
@@ -103,7 +104,7 @@
                 </li>
               </ul>
             </div>
-            <div v-if="user?.role?.includes('admin')">
+            <div v-if="user && user.email === 'karadan.ay7@gmail.com'">
               <ul class="bg-gray-50">
                 <li>
                   <NuxtLink
