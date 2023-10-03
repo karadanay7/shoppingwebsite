@@ -140,7 +140,7 @@ let elements = null;
 let card = null;
 let form = null;
 let total = ref(0);
-let clientSecret = null;
+let clientSecret = ref(null);
 let currentAddress = ref(null);
 let isProcessing = ref(false);
 
@@ -183,7 +183,7 @@ watch(
 const stripeInit = async () => {
   const runtimeConfig = useRuntimeConfig();
 
-  stripe = await loadStripe(String(runtimeConfig.public.stripePk));
+  stripe = await loadStripe(import.meta.env.VITE_STRIPE_PK_KEY);
 
   let res = await useFetch("/api/stripe/paymentintent", {
     method: "POST",
@@ -191,8 +191,8 @@ const stripeInit = async () => {
       amount: total.value,
     },
   });
-  clientSecret = res.data._rawValue.client_secret;
-  console.log(res.data._rawValue.client_secret);
+  clientSecret.value = res.data._rawValue.client_secret;
+
   elements = stripe?.elements();
 
   var style = {
@@ -229,7 +229,7 @@ const pay = async () => {
   }
   isProcessing.value = true;
 
-  let result = await stripe.confirmCardPayment(clientSecret, {
+  let result = await stripe.confirmCardPayment(clientSecret.value, {
     payment_method: { card: card },
   });
 
