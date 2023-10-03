@@ -18,17 +18,25 @@
                     v-model="categoryId"
                     required
                     id="category.id"
-                    class="w-full px-4 py-2 border rounded"
+                    class="w-full px-4 py-2 border rounded border-gray-400 focus:outline-orange-500"
                   >
                     <option
                       v-for="category in categories"
                       :value="category.id"
                       :key="category.id"
+                      class="ring-orange-500 hover:ring-orange-500"
                     >
                       {{ category.name }}
                     </option>
                   </select>
                 </div>
+                <NuxtLink to="/admin/Addcategory" class="mb-4">
+                  <button
+                    class="bg-orange-500 text-white hover:scale-110 font-bold py-2 px-4 rounded"
+                  >
+                    Add a new category
+                  </button></NuxtLink
+                >
 
                 <div class="mb-4">
                   <label class="block mb-2 font-bold" for="title">Title:</label>
@@ -37,7 +45,7 @@
                     v-model="title"
                     required
                     id="title"
-                    class="w-full px-4 py-2 border rounded"
+                    class="w-full px-4 py-2 border rounded border-gray-400 focus:outline-orange-500"
                     placeholder="Enter product title"
                   />
                 </div>
@@ -46,12 +54,12 @@
                 <div class="mb-4">
                   <label class="block mb-2 font-bold" for="price">Price:</label>
                   <input
-                    type="text"
+                    type="number"
                     v-model="price"
                     required
                     id="price"
-                    class="w-full px-4 py-2 border rounded"
-                    placeholder="Enter product price"
+                    class="w-full px-4 py-2 border rounded border-gray-400 focus:outline-orange-500"
+                    placeholder="Enter product price and add double 0"
                   />
                 </div>
 
@@ -61,11 +69,11 @@
                     >Stock Quantity:</label
                   >
                   <input
-                    type="text"
+                    type="number"
                     v-model="stockQuantity"
                     required
                     id="stockQuantity"
-                    class="w-full px-4 py-2 border rounded"
+                    class="w-full px-4 py-2 border rounded border-gray-400 focus:outline-orange-500"
                     placeholder="Enter stock quantity"
                   />
                 </div>
@@ -79,7 +87,7 @@
                     v-model="description"
                     required
                     id="description"
-                    class="w-full px-4 py-2 border rounded"
+                    class="w-full px-4 py-2 border rounded border-gray-400 focus:outline-orange-500"
                     placeholder="Provide details about the product"
                   />
                 </div>
@@ -105,7 +113,7 @@
                 <hr />
                 <div class="mb-4">
                   <button
-                    class="bg-gray-500 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded"
+                    class="bg-orange-500 hover:scale-110 text-white font-bold py-2 px-4 rounded"
                   >
                     Add Product
                   </button>
@@ -118,6 +126,9 @@
     </main>
   </MainLayout>
 </template>
+
+<style></style>
+
 <script setup>
 import MainLayout from "~/layouts/MainLayout.vue";
 const categoriesResponse = await useFetch("/api/prisma/get-all-categories");
@@ -134,27 +145,6 @@ const categoryId = ref(null);
 const src = ref("");
 const files = ref(null);
 const latestPath = ref("");
-
-// const uploadImage = async (evt) => {
-//   files.value = evt.target.files;
-//   try {
-//     if (!files.value || files.value.length === 0) {
-//       throw new Error("You must select an image to upload.");
-//     }
-
-//     const file = files.value[0];
-//     const fileName = file.name;
-//     const filePath = `images/${fileName}`;
-
-//     let { error: uploadError } = await supabase.storage
-//       .from("butik1")
-//       .upload(filePath, file);
-
-//     if (uploadError) throw uploadError;
-//   } catch (error) {
-//     alert(error.message);
-//   }
-// };
 
 const uploadImage = async (evt) => {
   files.value = evt.target.files;
@@ -178,6 +168,7 @@ const uploadImage = async (evt) => {
       .download(filePath);
     if (error) throw error;
     src.value = URL.createObjectURL(data);
+    console.log(latestPath.value);
   } catch (error) {
     alert(error.message);
   }

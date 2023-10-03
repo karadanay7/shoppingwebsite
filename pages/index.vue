@@ -44,7 +44,7 @@
                   <span
                     class="text-[9px] sm:text-[14px] text-center font-semibold text-gray-900"
                   >
-                    {{ `$${product.price.toFixed(2)}` }}
+                    $ {{ product.price / 100 }}.00
                   </span>
                 </div>
               </div>
@@ -98,7 +98,7 @@
                   <span
                     class="text-[9px] sm:text-[14px] text-center font-semibold text-gray-900"
                   >
-                    {{ `$${product.price.toFixed(2)}` }}
+                    $ {{ product.price / 100 }}.00
                   </span>
                 </div>
               </div>
@@ -146,7 +146,7 @@
                   <span
                     class="text-[9px] sm:text-[14px] text-center font-semibold text-gray-900"
                   >
-                    {{ `$${product.price.toFixed(2)}` }}
+                    $ {{ product.price / 100 }}.00
                   </span>
                 </div>
               </div>

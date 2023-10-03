@@ -7,12 +7,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
     (!user.value || user.value.email !== "karadan.ay7@gmail.com")
   ) {
     // If a non-admin user is trying to access an admin page, redirect to the restricted page
-    return "/restricted";
-  }
-
-  if (!user.value && to.fullPath === "/checkout") {
-    // If there is no user and the user is trying to access the checkout page, redirect to the auth page
-    return "/auth";
+    return navigateTo("/restricted");
   }
 
   // Allow navigation to proceed without redirection

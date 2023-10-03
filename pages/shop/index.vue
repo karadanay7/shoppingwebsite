@@ -48,7 +48,7 @@
                   {{ product.title }}
                 </h3>
                 <p class="text-gray-600 mt-2 text-xs sm:text-lg md:text-lg">
-                  ${{ product.price }}.00
+                  ${{ product.price / 100 }}.00
                 </p>
               </div>
             </div>

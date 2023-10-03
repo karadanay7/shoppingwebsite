@@ -126,6 +126,7 @@
 </template>
 
 <script setup>
+import { loadStripe } from "@stripe/stripe-js";
 import MainLayout from "~/layouts/MainLayout.vue";
 import { useUserStore } from "~/stores/user";
 const userStore = useUserStore();
@@ -182,7 +183,7 @@ watch(
 const stripeInit = async () => {
   const runtimeConfig = useRuntimeConfig();
 
-  stripe = Stripe(String(runtimeConfig.public.stripePk));
+  stripe = await loadStripe(String(runtimeConfig.public.stripePk));
 
   let res = await useFetch("/api/stripe/paymentintent", {
     method: "POST",
@@ -190,9 +191,8 @@ const stripeInit = async () => {
       amount: total.value,
     },
   });
-
   clientSecret = res.data._rawValue.client_secret;
-
+  console.log(res.data._rawValue.client_secret);
   elements = stripe?.elements();
 
   var style = {
@@ -222,7 +222,6 @@ const stripeInit = async () => {
 
   isProcessing.value = false;
 };
-
 const pay = async () => {
   if (currentAddress.value && currentAddress.value.data == "") {
     showError("Please add shipping address");

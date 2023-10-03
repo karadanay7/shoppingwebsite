@@ -16,6 +16,7 @@ export default defineNuxtConfig({
   supabase: {
     redirect: false,
   },
+
   // routeRules: {
   //   // Homepage pre-rendered at build time
   //   "/": { prerender: true },
@@ -29,13 +30,14 @@ export default defineNuxtConfig({
   //   "/api/**": { cors: true },
   //   // Redirects legacy urls
   // },
-  nitro: {
-    compressPublicAssets: true,
-  },
+
   runtimeConfig: {
     public: {
       stripePk: process.env.STRIPE_PK_KEY,
     },
+  },
+  nitro: {
+    compressPublicAssets: true,
   },
   app: {
     head: {

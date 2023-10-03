@@ -47,7 +47,7 @@
                       {{ product.stockQuantity }}
                     </td>
                     <td class="whitespace-nowrap px-6 py-4">
-                      {{ product.price }}
+                      ${{ product.price / 100 }}.00
                     </td>
                     <td class="whitespace-nowrap px-6 py-4">
                       <img

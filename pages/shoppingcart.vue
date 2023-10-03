@@ -67,7 +67,10 @@
             <div class="flex items-center justify-between my-4">
               <div class="font-semibold">Total</div>
               <div class="text-2xl font-semibold">
-                $ <span class="font-extrabold">{{ totalPriceComputed }}</span>
+                $
+                <span class="font-extrabold"
+                  >{{ totalPriceComputed / 100 }}.00</span
+                >
               </div>
             </div>
             <button
@@ -80,6 +83,7 @@
               Checkout
             </button>
           </div>
+          {{}}
 
           <div class="text-lg font-semibold mb-4 pl-5">Payment methods</div>
           <div class="flex items-center justify-start gap-8 my-4 pl-5">
@@ -111,7 +115,7 @@ const totalPriceComputed = computed(() => {
   userStore.cart.forEach((prod) => {
     price += prod.price;
   });
-  return price / 100;
+  return price;
 });
 
 const selectedRadioFunc = (e) => {
@@ -141,7 +145,6 @@ const goToCheckout = () => {
 
   res.forEach((item) => userStore.checkout.push(toRaw(item)));
 
-  router.push({ name: "checkout" });
+  router.push("/checkout");
 };
-console.log("hey", userStore.checkout);
 </script>
