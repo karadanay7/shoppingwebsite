@@ -1,8 +1,8 @@
 <template>
-  <NavLayout>
+  <MainLayout>
     <div
-      class="bg-cover bg-center bg-fixed overflow-hidden"
-      style="background-image: url('/aboutus.jpg')"
+      class="bg-cover bg-center bg-fixed overflow-hidden pt-28"
+      style="background-image: url(&quot;/aboutus.jpg&quot;)"
     >
       <div class="bg-opacity-40 py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
@@ -93,9 +93,9 @@
         </div>
       </div>
     </div>
-  </NavLayout>
+  </MainLayout>
 </template>
 
 <script setup>
-import NavLayout from "~/layouts/NavLayout.vue";
+import MainLayout from "~/layouts/MainLayout.vue";
 </script>

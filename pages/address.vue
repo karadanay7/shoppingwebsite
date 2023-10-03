@@ -1,10 +1,12 @@
 <template>
   <MainLayout>
-    <div id="AddressPage" class="mt-4 bg-gray-50 mx-auto pt-28">
+    <div id="AddressPage" class="bg-gray-50 min-h-screen pt-32">
       <div
         class="mx-auto bg-white w-3/4 md:w-1/2 rounded-lg p-3 text-center text-gray-600"
       >
-        <div class="text-xl text-bold mb-2">Address Details</div>
+        <div class="text-xl text-bold mb-2 text-orange-500">
+          Address Details
+        </div>
         <form @submit.prevent="submit()">
           <TextInput
             class="w-full"
@@ -49,7 +51,7 @@
           <button
             :disabled="isWorking"
             type="submit"
-            class="mt-6 bg-orange-500 w-48 text-center text-white text-lg font-semibold p-1.5 rounded-full"
+            class="mt-6 bg-orange-500 w-48 text-center text-white text-lg font-semibold p-1.5 rounded hover:scale-110"
             id="loading"
             aria-label="loading"
           >

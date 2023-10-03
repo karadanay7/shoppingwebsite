@@ -167,12 +167,12 @@ const mostSellingProducts = ref([]);
 const productsResponse = await useFetch("/api/prisma/get-all-products");
 const products = productsResponse?.data?.value;
 saleProducts.value = products.filter((product) =>
-  [51, 54, 52, 54, 55].includes(product.id)
+  [70, 71, 72, 73, 74].includes(product.id)
 );
 trendingProducts.value = products.filter((product) =>
-  [54, 55, 57, 58, 51].includes(product.id)
+  [73, 74, 75, 76, 77].includes(product.id)
 );
 mostSellingProducts.value = products.filter((product) =>
-  [58, 59, 60, 51, 54].includes(product.id)
+  [78, 79, 80, 70, 71].includes(product.id)
 );
 </script>

@@ -2,7 +2,7 @@
   <MainLayout>
     <div
       id="CheckoutPage"
-      class="pt-28 w-full minh-h-screen mx-auto px-2 bg-gray-50 text-gray-800"
+      class="pt-28 w-full min-h-screen mx-auto px-2 bg-gray-50 text-gray-800"
     >
       <div class="md:flex gap-4 justify-between mx-auto w-full">
         <div class="md:w-[65%]">

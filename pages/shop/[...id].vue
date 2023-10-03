@@ -13,7 +13,7 @@
           <h1 class="text-3xl font-semibold">{{ product.title }}</h1>
           <p class="text-gray-600 mt-2">{{ product.category }}</p>
           <p class="text-lg font-semibold mt-4">
-            {{ `$${product.price.toFixed(2)}` }}
+            ${{ product.price / 100 }}.00
           </p>
           <p class="text-gray-700 mt-2">{{ product.description }}</p>
           <button
