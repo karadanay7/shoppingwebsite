@@ -1,5 +1,6 @@
 <template>
   <MainLayout>
+    <Loading v-if="isLoading" />
     <div class="pt-48 mx-auto text-gray-700 min-h-screen bg-gray-50">
       <div class="flex justify-center">
         <div class="w-full sm:w-3/4 lg:w-1/2">
@@ -56,15 +57,18 @@ import MainLayout from "~/layouts/MainLayout.vue";
 
 const user = useSupabaseUser();
 const supabase = useSupabaseClient();
+const isLoading = ref(false);
 
 const name = ref(user.value.user_metadata.full_name);
 const email = ref(user.value.email);
 
 const updateProfile = () => {
+  isLoading.value = true;
   supabase.auth.updateUser({
     email: email.value,
     data: { full_name: name.value },
   });
+  isLoading.value = false;
   return navigateTo("/");
 };
 </script>

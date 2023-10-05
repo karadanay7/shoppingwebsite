@@ -1,5 +1,6 @@
 <template>
   <MainLayout>
+    <Loading v-if="isLoading" />
     <div
       id="OrdersPage"
       class="min-h-screen mx-auto px-2 pt-28 text-gray-800 bg-gray-50"
@@ -53,7 +54,7 @@ import MainLayout from "~/layouts/MainLayout.vue";
 import { useUserStore } from "~/stores/user";
 const userStore = useUserStore();
 const user = useSupabaseUser();
-
+const isLoading = ref(false);
 let orders = ref(null);
 
 const dateFormatter = (d) => {
@@ -71,9 +72,11 @@ const dateFormatter = (d) => {
 };
 
 onBeforeMount(async () => {
+  isLoading.value = true;
   orders.value = await useFetch(
     `/api/prisma/get-all-orders-by-user/${user.value.id}`
   );
+  isLoading.value = false;
 });
 
 onMounted(() => {

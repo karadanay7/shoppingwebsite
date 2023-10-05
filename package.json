@@ -30,6 +30,7 @@
     "@stripe/stripe-js": "^2.1.2",
     "nuxt-lazy-load": "^3.0.4",
     "nuxt-lodash": "^2.5.0",
+    "pinia": "^2.1.6",
     "stripe": "^13.5.0",
     "vue3-marquee": "^4.0.0"
   }
