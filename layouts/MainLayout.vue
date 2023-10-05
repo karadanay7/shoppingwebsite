@@ -141,8 +141,8 @@
         <NuxtLink to="/" class="max-w-[100px]">
           <img
             src="/AK1.png"
-            alt="aliexpresslogo"
-            title="aliexpress"
+            alt="logo"
+            title="logo"
             sizes="sm:100vw md:50vw lg:400px"
           />
         </NuxtLink>
