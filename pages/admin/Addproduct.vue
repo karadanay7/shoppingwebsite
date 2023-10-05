@@ -1,7 +1,8 @@
 <template>
   <MainLayout>
     <main>
-      <div class="pt-32 mx-auto text-gray-700">
+      <Loading v-if="isLoading" />
+      <div class="pt-32 mx-auto text-gray-700 bg-gray-50">
         <div class="flex justify-center">
           <div class="w-full sm:w-3/4 lg:w-1/2">
             <div class="bg-white shadow-md rounded p-6">
@@ -30,7 +31,10 @@
                     </option>
                   </select>
                 </div>
-                <NuxtLink to="/admin/Addcategory" class="mb-4">
+                <NuxtLink
+                  to="/admin/Addcategory"
+                  class="mb-4 flex justify-center"
+                >
                   <button
                     class="bg-orange-500 text-white hover:scale-110 font-bold py-2 px-4 rounded"
                   >
@@ -110,8 +114,8 @@
                   style="width: 10em; height: 10em"
                 />
                 <!-- Button -->
-                <hr />
-                <div class="mb-4">
+
+                <div class="mb-4 flex justify-center">
                   <button
                     class="bg-orange-500 hover:scale-110 text-white font-bold py-2 px-4 rounded"
                   >
@@ -138,17 +142,19 @@ const supabase = useSupabaseClient();
 const router = useRouter();
 
 const title = ref("");
-const price = ref(0);
+const price = ref(1);
 const stockQuantity = ref(1);
 const description = ref("");
 const categoryId = ref(null);
 const src = ref("");
 const files = ref(null);
 const latestPath = ref("");
+const isLoading = ref(false);
 
 const uploadImage = async (evt) => {
   files.value = evt.target.files;
   try {
+    isLoading.value = true;
     if (!files.value || files.value.length === 0) {
       throw new Error("You must select an image to upload.");
     }
@@ -168,13 +174,14 @@ const uploadImage = async (evt) => {
       .download(filePath);
     if (error) throw error;
     src.value = URL.createObjectURL(data);
-    console.log(latestPath.value);
+    isLoading.value = false;
   } catch (error) {
     alert(error.message);
   }
 };
 
 const onAddProduct = async () => {
+  isLoading.value = true;
   await useFetch("/api/prisma/add-product/", {
     method: "POST",
     body: {

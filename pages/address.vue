@@ -1,13 +1,15 @@
 <template>
   <MainLayout>
+    <Loading v-if="isLoading" />
     <div id="AddressPage" class="bg-gray-50 min-h-screen pt-32">
-      <div
-        class="mx-auto bg-white w-3/4 md:w-1/2 rounded-lg p-3 text-center text-gray-600"
-      >
-        <div class="text-xl text-bold mb-2 text-orange-500">
+      <div class="mx-auto bg-white w-3/4 md:w-1/2 rounded-lg p-3 text-gray-600">
+        <div class="text-xl text-bold mb-2 text-orange-500 text-center">
           Address Details
         </div>
         <form @submit.prevent="submit()">
+          <label class="block mb-2 mt-2 font-bold" id="category"
+            >Contact name:</label
+          >
           <TextInput
             class="w-full"
             placeholder="Contact Name"
@@ -15,6 +17,9 @@
             inputType="text"
             :error="error && error.type == 'contactName' ? error.message : ''"
           />
+          <label class="block mb-2 mt-2 font-bold" id="category"
+            >Address:</label
+          >
 
           <TextInput
             class="w-full mt-2"
@@ -23,6 +28,9 @@
             inputType="text"
             :error="error && error.type == 'address' ? error.message : ''"
           />
+          <label class="block mb-2 mt-2 font-bold" id="category"
+            >Zip code:</label
+          >
 
           <TextInput
             class="w-full mt-2"
@@ -31,6 +39,7 @@
             inputType="text"
             :error="error && error.type == 'zipCode' ? error.message : ''"
           />
+          <label class="block mb-2 mt-2 font-bold" id="category">City:</label>
 
           <TextInput
             class="w-full mt-2"
@@ -39,6 +48,9 @@
             inputType="text"
             :error="error && error.type == 'city' ? error.message : ''"
           />
+          <label class="block mb-2 mt-2 font-bold" id="category"
+            >Country:</label
+          >
 
           <TextInput
             class="w-full mt-2"
@@ -55,8 +67,7 @@
             id="loading"
             aria-label="loading"
           >
-            <div v-if="!isWorking">Update Address</div>
-            <Icon v-else name="eos-icons:loading" size="25" class="mr-2" />
+            <div>Update Address</div>
           </button>
         </form>
       </div>
@@ -80,6 +91,7 @@ let currentAddress = ref(null);
 let isUpdate = ref(false);
 let isWorking = ref(false);
 let error = ref(null);
+const isLoading = ref(false);
 
 watchEffect(async () => {
   currentAddress.value = await useFetch(
@@ -136,10 +148,11 @@ const submit = async () => {
   }
 
   if (isUpdate.value) {
+    isLoading.value = true;
     await useFetch(
       `/api/prisma/update-address/${currentAddress.value.data.id}`,
       {
-        method: "PATCH",
+        method: "PUT",
         body: {
           userId: user.value.id,
           name: contactName.value,
@@ -169,6 +182,7 @@ const submit = async () => {
   });
 
   isWorking.value = false;
+  isLoading.value = false;
 
   return navigateTo("/checkout");
 };

@@ -44,7 +44,9 @@
           @mouseleave="isAccountMenu = false"
           class="block py-2 pl-3 pr-2 md:pr-8 text-gray-600 md:pl-12 hover:text-gray-900 hover:scale-110 rounded p-0"
           :class="
-            isAccountMenu ? 'bg-white border z-40 ' : 'border border-[#f9fafb]'
+            isAccountMenu
+              ? 'bg-gray-50 border z-40 '
+              : 'border border-[#f9fafb]'
           "
         >
           <Icon name="ic:baseline-person" size="17" class="mb-1" />

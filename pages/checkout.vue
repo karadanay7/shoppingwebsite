@@ -100,7 +100,6 @@
               />
 
               <button
-                :disabled="isProcessing"
                 type="submit"
                 class="mt-4 bg-orange-500 w-full text-white text-[21px] font-semibold p-1.5 rounded-full"
                 :class="isProcessing ? 'opacity-70' : 'opacity-100'"

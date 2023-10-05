@@ -1,5 +1,6 @@
 <template>
   <MainLayout>
+    <Loading v-if="isLoading" />
     <div class="min-h-screen bg-gray-50 pt-32">
       <div class="p-4">
         <nuxt-link
@@ -74,11 +75,6 @@
                       </button>
                     </td>
                   </tr>
-                  <Icon
-                    name="mdi:loading"
-                    class="!w-5 !h-5 !text-gray-800 animate-rotate"
-                    v-if="isLoading"
-                  />
                 </tbody>
               </table>
             </div>
@@ -107,7 +103,6 @@ const deleteProduct = async (id) => {
     const productsResponse = await useFetch("/api/prisma/get-all-products");
     products.value = productsResponse?.data?.value;
     isLoading.value = false;
-    alert("Product deleted successfully");
   }
 };
 

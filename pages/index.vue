@@ -164,6 +164,7 @@ import MainLayout from "~/layouts/MainLayout.vue";
 const saleProducts = ref([]);
 const trendingProducts = ref([]);
 const mostSellingProducts = ref([]);
+
 const productsResponse = await useFetch("/api/prisma/get-all-products");
 const products = productsResponse?.data?.value;
 saleProducts.value = products.filter((product) =>

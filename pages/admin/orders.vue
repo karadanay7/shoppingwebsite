@@ -1,5 +1,6 @@
 <template>
   <MainLayout>
+    <Loading v-if="isLoading" />
     <div class="min-h-screen bg-gray-50 pt-28">
       <div class="flex flex-col overflow-x-auto">
         <div class="sm:-mx-6 lg:-mx-8">
