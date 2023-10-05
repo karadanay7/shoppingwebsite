@@ -139,7 +139,7 @@
     <div id="MainHeader" class="flex w-full bg-gray-50 justify-center">
       <div class="flex justify-center gap-10 max-w-[1150px] p-4 w-full mx-auto">
         <NuxtLink to="/" class="max-w-[100px]">
-          <nuxt-img
+          <img
             src="/AK1.png"
             alt="aliexpresslogo"
             title="aliexpress"
