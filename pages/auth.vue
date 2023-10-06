@@ -23,22 +23,6 @@
         />
         <span>Google</span>
       </button>
-
-      <button
-        @click="login('github')"
-        class="mt-4 flex items-center justify-center gap-3 p-1.5 w-full border hover:bg-gray-100 rounded-full text-lg font-semibold"
-        id="github"
-        aria-label="github"
-        type="button"
-      >
-        <img
-          class="w-full max-w-[30px]"
-          src="/github-logo.png"
-          alt="githublogo"
-          title="github-logo"
-        />
-        <span>Github</span>
-      </button>
     </div>
   </div>
 </template>
@@ -55,8 +39,13 @@ watchEffect(() => {
 
 const login = async (prov) => {
   const { data, error } = await client.auth.signInWithOAuth({
-    provider: prov,
-    redirectTo: "/",
+    provider: "google",
+    options: {
+      queryParams: {
+        access_type: "offline",
+        prompt: "consent",
+      },
+    },
   });
 };
 </script>
