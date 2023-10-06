@@ -46,7 +46,7 @@
 <script setup>
 const client = useSupabaseClient();
 const user = useSupabaseUser();
-const router = useRouter();
+
 watchEffect(() => {
   if (user.value) {
     return navigateTo("/");
@@ -56,8 +56,6 @@ watchEffect(() => {
 const login = async (prov) => {
   const { data, error } = await client.auth.signInWithOAuth({
     provider: prov,
-    redirectTo: window.location.origin,
   });
-  router.push("/");
 };
 </script>
