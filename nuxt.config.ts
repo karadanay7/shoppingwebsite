@@ -17,20 +17,6 @@ export default defineNuxtConfig({
     redirect: false,
   },
 
-  // routeRules: {
-  //   // Homepage pre-rendered at build time
-  //   "/": { prerender: true },
-  //   // Product page generated on-demand, revalidates in background
-  //   "/products/**": { swr: true },
-  //   // Blog post generated on-demand once until next deploy
-
-  //   // Admin dashboard renders only on client-side
-
-  //   // Add cors headers on API routes
-  //   "/api/**": { cors: true },
-  //   // Redirects legacy urls
-  // },
-
   runtimeConfig: {
     public: {
       stripePk: process.env.STRIPE_PK_KEY,
