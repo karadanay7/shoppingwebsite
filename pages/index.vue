@@ -26,10 +26,12 @@
                 <div
                   class="h-[110px] sm:h-[250px] md:h-[250px] lg:h-[250px] xl:h-[300px] w-[120px] sm:w-[200px] md:w-[250px] lg:w-[250px] xl:w-[250px] flex items-center justify-center"
                 >
-                  <img
+                  <NuxtImg
                     :src="product.image"
                     :alt="product.title"
                     class="max-w-full max-h-full object-contain rounded-md"
+                    format="webp"
+                    sizes="100vw sm:50vw md:400px"
                   />
                 </div>
 
@@ -80,11 +82,12 @@
                 <div
                   class="h-[110px] sm:h-[250px] md:h-[250px] lg:h-[250px] xl:h-[300px] w-[120px] sm:w-[200px] md:w-[250px] lg:w-[250px] xl:w-[250px] flex items-center justify-center"
                 >
-                  <muxt-img
+                  <NuxtImg
                     :src="product.image"
                     :alt="product.title"
                     class="max-w-full max-h-full object-contain rounded-md"
-                    sizes="400px"
+                    format="webp"
+                    sizes="100vw sm:50vw md:400px"
                   />
                 </div>
 
@@ -129,10 +132,12 @@
                 <div
                   class="h-[110px] sm:h-[250px] md:h-[250px] lg:h-[250px] xl:h-[300px] w-[120px] sm:w-[200px] md:w-[250px] lg:w-[250px] xl:w-[250px] flex items-center justify-center"
                 >
-                  <nuxt-img
+                  <NuxtImg
                     :src="product.image"
                     :alt="product.title"
                     class="max-w-full max-h-full object-contain rounded-md"
+                    format="webp"
+                    sizes="100vw sm:50vw md:400px"
                   />
                 </div>
 
