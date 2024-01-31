@@ -1,7 +1,7 @@
 <template>
   <MainLayout>
     <Loading v-if="isLoading" />
-    <div class="min-h-screen bg-gray-50 pt-32">
+    <div class="min-h-screen bg-gray-50">
       <div class="p-4">
         <nuxt-link
           to="/admin/Addproduct"
@@ -48,7 +48,7 @@
                       {{ product.stockQuantity }}
                     </td>
                     <td class="whitespace-nowrap px-6 py-4">
-                      ${{ product.price / 100 }}.00
+                      ${{ product.price / 100 }}
                     </td>
                     <td class="whitespace-nowrap px-6 py-4">
                       <img

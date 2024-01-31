@@ -32,6 +32,7 @@
                     class="max-w-full max-h-full object-contain rounded-md"
                     format="webp"
                     sizes="100vw sm:50vw md:400px"
+                    preload
                   />
                 </div>
 
@@ -88,6 +89,7 @@
                     class="max-w-full max-h-full object-contain rounded-md"
                     format="webp"
                     sizes="100vw sm:50vw md:400px"
+                    preload
                   />
                 </div>
 
@@ -138,6 +140,7 @@
                     class="max-w-full max-h-full object-contain rounded-md"
                     format="webp"
                     sizes="100vw sm:50vw md:400px"
+                    preload
                   />
                 </div>
 
