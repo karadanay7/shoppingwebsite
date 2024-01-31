@@ -1,7 +1,7 @@
 <template>
   <MainLayout>
     <Loading v-if="isLoading" />
-    <div class="min-h-screen bg-gray-50">
+    <div class="min-h-screen bg-gray-50 pt-44">
       <div class="p-4">
         <nuxt-link
           to="/admin/Addproduct"
