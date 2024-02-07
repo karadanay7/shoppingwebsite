@@ -169,7 +169,9 @@
 </template>
 
 <script setup>
+// import ref from Vue
 import MainLayout from "~/layouts/MainLayout.vue";
+
 const saleProducts = ref([]);
 const trendingProducts = ref([]);
 const mostSellingProducts = ref([]);
