@@ -197,3 +197,9 @@ const onAddProduct = async () => {
 };
 // Fetch and display the image when the page loads or when the path changes
 </script>
+const categories = [ 1, Clothing , 2, Electronics , 3, Home and Furniture , 4,
+Books and Stationery , 5, Sports and Outdoors , 6, Coffee Shops , 7, Restaurants
+, 8, Spa & Massage , 9, Beauty , 10, Grocery Stores , 11, Toys and Games , 12,
+Jewelry and Accessories , 13, Automotive , 14, Pet Supplies , 15, Tech and
+Gadgets , 16, Health and Fitness , 17, Music and Instruments , 18, Arts and
+Crafts , 19, Baby and Kids , 20, Footwear , ];
